@@ -25,12 +25,13 @@ items:
           - name: postgresql
             containerPort: 5432
           volumeMounts:
-              - name: postgresql-persistent-storage
-                mountPath: /data/db
-        volumes:
-          - name: postgresql-persistent-storage
-            persistentVolumeClaim:
-              claimName: postgresql-persistent-storage
+              - name: postgresql-1
+             	mountPath: /bitnami/postgresql
+              - name: postgresql-2
+                mountPath: /docker-entrypoint-initdb.d
+              - name: postgresql-3
+                mountPath: /docker-entrypoint-preinitdb.d
+        
 -
   apiVersion: v1
   kind: Service

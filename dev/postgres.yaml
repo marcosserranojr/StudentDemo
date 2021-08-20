@@ -23,14 +23,7 @@ items:
           name: postgresql
           ports:
           - name: postgresql
-            containerPort: 5432
-          volumeMounts:
-              - name: postgresql-1
-             	mountPath: /bitnami/postgresql
-              - name: postgresql-2
-                mountPath: /docker-entrypoint-initdb.d
-              - name: postgresql-3
-                mountPath: /docker-entrypoint-preinitdb.d
+            containerPort: 5432   
         
 -
   apiVersion: v1

@@ -19,7 +19,7 @@ items:
         name: postgresql
       spec:
         containers:
-        - image: image-registry.openshift-image-registry.svc:5000/studentdemo/postgresql@sha256:f6c627897d423659fac04f99bfa4c938c781a34eb3157832f046b89065e6ebc0
+        - image: quay.io/bitnami/postgresql
           name: postgresql
           ports:
           - name: postgresql

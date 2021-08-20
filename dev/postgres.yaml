@@ -44,14 +44,3 @@ items:
         targetPort: 5432
     selector:
       name: postgresql
--
-  apiVersion: v1
-  kind: PersistentVolumeClaim
-  metadata:
-    name: postgres-persistent-storage
-  spec:
-    accessModes:
-     - ReadWriteOnce
-    resources:
-      requests:
-        storage: 1Gi

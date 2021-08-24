@@ -29,8 +29,7 @@ items:
             name: postgresql
             ports:
             - containerPort: 5432
-              name: http
-              protocol: TCP 
+              
 -   kind: Service
     apiVersion: v1
     metadata:
@@ -39,16 +38,8 @@ items:
         app: postgresql    
     spec:
       ports:
-      - name: http
-        port: 5432
+      - port: 5432
+        targetPort: 5432
       selector:
         app: postgresql
--   kind: Route
-    apiVersion: route.openshift.io/v1
-    metadata:
-      labels:
-        app: postgresql
-      name: postgresql-route
-    spec:
-      to:
-        kind: Service
+

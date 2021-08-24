@@ -24,7 +24,7 @@ items:
         spec:
           containers:
           - env:
-            image: image-registry.openshift-image-registry.svc:5000/marcos-serranojr-dev/postgresql@sha256:f6c627897d423659fac04f99bfa4c938c781a34eb3157832f046b89065e6ebc0
+            image: postgresql:latest
             imagePullPolicy: Always
             name: postgresql
             ports:

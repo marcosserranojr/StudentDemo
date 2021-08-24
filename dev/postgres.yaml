@@ -17,6 +17,7 @@ items:
           app: postgresql
       template:
         metadata:
+          name: postgresql
           labels:
             app: postgresql
           annotations:

@@ -3,55 +3,51 @@ kind: List
 items:
 -
     apiVersion: v1
-    kind: Deployment
+-   kind: Deployment
+    apiVersion: apps/v1
     metadata:
-        name: postgresql
-        labels:
-            app: postgresql
-    spec:
-        template:
-        metadata:
-            name: postgresql
-            app:
-                name: postgresql
-        spec:
-            containers:
-            - image:  image-registry.openshift-image-registry.svc:5000/marcos-serranojr-dev/postgresql@sha256:f6c627897d423659fac04f99bfa4c938c781a34eb3157832f046b89065e6ebc0
-              name: postgresql
-              ports:
-              - name: postgresql
-                containerPort: 5432
-                volumeMounts:
-                - name: pg-storage
-                  mountPath: /var/lib/postgresql/data
-            volumes:
-            - name: pg-storage
-              persistentVolumeClaim:
-                  claimName: pg-storage
--
-    apiVersion: v1
-    kind: Service
-    metadata:
-        name: postgresql
-        labels:
-            app: postgresql
-            name: postgresql
-    spec:                                                            
-        ports:
-            - port: 5432
-              targetPort: 5432
-        selector:
-            app: postgresql
--
-    apiVersion: v1
-    kind: PersistentVolumeClaim
-    metadata:
-        name: pg-storage
-        labels:
+      labels:
         app: postgresql
+        app.kubernetes.io/part-of: postgresql
+      name: postgresql
     spec:
-        accessModes:
-         - ReadWriteOnce
-        resources:
-            requests:
-                storage: 1Gi
+      replicas: 1
+      selector:
+        matchLabels:
+          app: postgresql
+      template:
+        metadata:
+          labels:
+            app: postgresql
+          annotations:
+        spec:
+          containers:
+          - env:
+            image: ${APP_IMAGE}
+            imagePullPolicy: Always
+            name: postgresql
+            ports:
+            - containerPort: 5432
+              name: http
+              protocol: TCP 
+-   kind: Service
+    apiVersion: v1
+    metadata:
+      name: postgresql
+      labels:
+        app: postgresql    
+    spec:
+      ports:
+      - name: http
+        port: 5432
+      selector:
+        app: postgresql
+-   kind: Route
+    apiVersion: route.openshift.io/v1
+    metadata:
+      labels:
+        app: postgresql
+      name: postgresql-route
+    spec:
+      to:
+        kind: Service

@@ -23,15 +23,16 @@ items:
         spec:
           containers:
           - env:
+            image: quay.io/bitnami/postgresql
+            imagePullPolicy: Always
+            name: postgresql
+            env:
               - name: POSTGRES_USER
                 value: postgres
               - name: POSTGRES_PASSWORD
                 value: password
               - name: POSTGRES_DB
                 value: student
-            image: quay.io/bitnami/postgresql
-            imagePullPolicy: Always
-            name: postgresql
             ports:
             - containerPort: 5432
               

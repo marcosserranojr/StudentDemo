@@ -19,7 +19,7 @@ items:
             - image:  image-registry.openshift-image-registry.svc:5000/marcos-serranojr-dev/postgresql@sha256:f6c627897d423659fac04f99bfa4c938c781a34eb3157832f046b89065e6ebc0
               name: postgresql
               ports:
-              - name: postgres
+              - name: postgresql
                 containerPort: 5432
                 volumeMounts:
                 - name: pg-storage

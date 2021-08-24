@@ -3,8 +3,7 @@ kind: List
 items:
 -
     apiVersion: v1
--   kind: Deployment
-    apiVersion: apps/v1
+    kind: Deployment
     metadata:
       name: postgresql
     labels:
@@ -23,10 +22,16 @@ items:
           annotations:
         spec:
           containers:
-          - env:
-            image: postgresql:latest
+          - image: quay.io/bitnami/postgresql
             imagePullPolicy: Always
             name: postgresql
+            env:
+              - name: POSTGRES_USER
+                value: postgres
+              - name: POSTGRES_PASSWORD
+                value: password
+              - name: POSTGRES_DB
+                value: student
             ports:
             - containerPort: 5432
               

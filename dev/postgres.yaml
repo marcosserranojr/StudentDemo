@@ -5,19 +5,19 @@ items:
     apiVersion: v1
     kind: Deployment
     metadata:
-        name: postgres
+        name: postgresql
         labels:
-            app: postgres
+            app: postgresql
     spec:
         template:
         metadata:
-            name: postgres
+            name: postgresql
             app:
-                name: postgres
+                name: postgresql
         spec:
             containers:
-            - image: postgres
-              name: postgres
+            - image:  image-registry.openshift-image-registry.svc:5000/marcos-serranojr-dev/postgresql@sha256:f6c627897d423659fac04f99bfa4c938c781a34eb3157832f046b89065e6ebc0
+              name: postgresql
               ports:
               - name: postgres
                 containerPort: 5432
@@ -32,23 +32,23 @@ items:
     apiVersion: v1
     kind: Service
     metadata:
-        name: postgres
+        name: postgresql
         labels:
-            app: postgres
-            name: postgres
+            app: postgresql
+            name: postgresql
     spec:                                                            
         ports:
             - port: 5432
               targetPort: 5432
         selector:
-            app: postgres
+            app: postgresql
 -
     apiVersion: v1
     kind: PersistentVolumeClaim
     metadata:
         name: pg-storage
         labels:
-        app: postgres
+        app: postgresql
     spec:
         accessModes:
          - ReadWriteOnce

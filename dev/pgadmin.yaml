@@ -29,7 +29,7 @@ items:
                 - name: PGADMIN_DEFAULT_PASSWORD
                   value: password                
               ports:
-                - containerPort: 8080
+                - containerPort: 80
               image: quay.io/icecavern/pgadmin
               imagePullPolicy: Always        
               
@@ -41,8 +41,8 @@ items:
         app: pgadmin    
     spec:
       ports:
-      - port: 8080
-        targetPort: 8080
+      - port: 80
+        targetPort: 80
       selector:
         app: pgadmin
 

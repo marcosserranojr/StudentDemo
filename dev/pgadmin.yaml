@@ -29,7 +29,11 @@ items:
                 - name: PGADMIN_DEFAULT_PASSWORD
                   value: password                
               ports:
-                - containerPort: 8080
+                - containerPort: 80
+              volumeMounts:
+                - name: pgadmin-volume-1
+                  mountPath: /var/lib/pgadmin
+              terminationMessagePolicy: File
               image: quay.io/v6tempest1/dbadmin-tool:latest
               imagePullPolicy: Always        
               
@@ -41,8 +45,8 @@ items:
         app: pgadmin    
     spec:
       ports:
-      - port: 8080
-        targetPort: 8080
+      - port: 80
+        targetPort: 80
       selector:
         app: pgadmin
 

@@ -2,7 +2,20 @@
 kind: List
 items:
 -
-    apiVersion: apps/v1
+
+  apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    name: pgadmin-storage
+  spec:
+    accessModes:
+     - ReadWriteOnce
+    resources:
+      requests:
+        storage: 1Gi
+
+
+-   apiVersion: apps/v1
     kind: Deployment    
     metadata:
       name: pgadmin
@@ -37,17 +50,7 @@ items:
               image: quay.io/v6tempest1/dbadmin-tool:latest
               imagePullPolicy: Always
 
--
-  apiVersion: v1
-  kind: PersistentVolumeClaim
-  metadata:
-    name: pgadmin-storage
-  spec:
-    accessModes:
-     - ReadWriteOnce
-    resources:
-      requests:
-        storage: 1Gi
+
 
 -   kind: Service
     apiVersion: v1

@@ -22,9 +22,10 @@ items:
         spec:
           containers:
             - resources: {}
-              name: pgadmin                             
+              name: pgadmin
+              env:                             
               ports:
-                - containerPort: 80
+                - containerPort: 8080
               image: quay.io/icecavern/pgadmin
               imagePullPolicy: Always        
               
@@ -36,8 +37,8 @@ items:
         app: pgadmin    
     spec:
       ports:
-      - port: 80
-        targetPort: 80
+      - port: 8080
+        targetPort: 8080
       selector:
         app: pgadmin
 

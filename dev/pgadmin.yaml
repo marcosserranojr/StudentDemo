@@ -30,7 +30,7 @@ items:
                   value: password                
               ports:
                 - containerPort: 8080
-              image: docker.io/051975/pgadmin:v4
+              image: quay.io/v6tempest1/dbadmin-tool:latest
               imagePullPolicy: Always        
               
 -   kind: Service

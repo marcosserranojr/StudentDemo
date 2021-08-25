@@ -35,9 +35,7 @@ objects:
                   value: password                
               ports:
                 - containerPort: 80
-                  protocol: TCP
-                - containerPort: 443
-                  protocol: TCP
+                  protocol: TCP                
               volumeMounts:
                 - name: pga-storage
                   mountPath: /var/lib/pgadmin              

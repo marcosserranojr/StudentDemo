@@ -30,7 +30,7 @@ items:
                   value: password                
               ports:
                 - containerPort: 80
-              image: quay.io/mapstory/pgadmin
+              image: quay.io/ukhomeofficedigital/pgadmin4
               imagePullPolicy: Always          
         
               

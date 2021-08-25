@@ -29,10 +29,9 @@ items:
                 - name: PGADMIN_DEFAULT_PASSWORD
                   value: password                
               ports:
-                - containerPort: 80
+                - containerPort: 8080
               image: quay.io/ukhomeofficedigital/pgadmin4
-              imagePullPolicy: Always          
-        
+              imagePullPolicy: Always        
               
 -   kind: Service
     apiVersion: v1
@@ -42,10 +41,21 @@ items:
         app: pgadmin    
     spec:
       ports:
-      - port: 80
-        targetPort: 80
+      - port: 8080
+        targetPort: 8080
       selector:
         app: pgadmin
+
+-   kind: Route
+    apiVersion: route.openshift.io/v1
+    metadata:
+      labels:
+        app: pgadmin
+      name: pgadmin-route
+    spec:
+      to:
+        kind: Service
+        name: pgadmin
 
 
     

@@ -17,8 +17,8 @@ components:
   - type: kubernetes
     reference: postgres.yaml
     alias: postgres
-  - type: kubernetes
-    reference: postgres.yaml
+  - type: openshift
+    reference: pgadmin.yaml
     alias: pgadmin
  
 commands:

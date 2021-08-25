@@ -1,60 +1,62 @@
 ﻿apiVersion: v1
-kind: Template
-metadata:
-  name: pgadmin
-objects:
-  -
-      apiVersion: apps/v1
-      kind: Deployment    
-      metadata:
-        name: pgadmin
-        labels:
+kind: List
+items:
+-
+    apiVersion: apps/v1
+    kind: Deployment    
+    metadata:
+      name: pgadmin
+      labels:
+        app: pgadmin
+        app.kubernetes.io/part-of: pgadmin      
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
           app: pgadmin
-          app.kubernetes.io/part-of: pgadmin      
-      spec:
-        replicas: 1
-        selector:
-          matchLabels:
+      template:
+        metadata:
+          labels:
             app: pgadmin
-        template:
-          metadata:
-            labels:
-              app: pgadmin
-            annotations:
-          spec:
-            containers:
-              - resources: {}
-                name: pgadmin
-                env:
-                  - name: PGADMIN_DEFAULT_EMAIL
-                    value: v6tempest@yahoo.com
-                  - name: PGADMIN_DEFAULT_PASSWORD
-                    value: password                
-                ports:
-                  - containerPort: 8080
-                image: docker.io/fslibre/pgadmin4:5.2
-                imagePullPolicy: Always        
-                
-  -   kind: Service
-      apiVersion: v1
-      metadata:
-        name: pgadmin
-        labels:
-          app: pgadmin    
-      spec:
-        ports:
-        - port: 8080
-          targetPort: 8080
-        selector:
-          app: pgadmin
+          annotations:
+        spec:
+          containers:
+            - resources: {}
+              name: pgadmin
+              env:
+                - name: PGADMIN_DEFAULT_EMAIL
+                  value: v6tempest@yahoo.com
+                - name: PGADMIN_DEFAULT_PASSWORD
+                  value: password                
+              ports:
+                - containerPort: 8080
+              image: docker.io/ubiutil/pgadmin4
+              imagePullPolicy: Always        
+              
+-   kind: Service
+    apiVersion: v1
+    metadata:
+      name: pgadmin
+      labels:
+        app: pgadmin    
+    spec:
+      ports:
+      - port: 8080
+        targetPort: 8080
+      selector:
+        app: pgadmin
 
-  -   kind: Route
-      apiVersion: route.openshift.io/v1
-      metadata:
-        labels:
-          app: pgadmin
-        name: pgadmin-route
-      spec:
-        to:
-          kind: Service
-          name: pgadmin
+-   kind: Route
+    apiVersion: route.openshift.io/v1
+    metadata:
+      labels:
+        app: pgadmin
+      name: pgadmin-route
+    spec:
+      to:
+        kind: Service
+        name: pgadmin
+
+
+    
+ 

@@ -22,12 +22,7 @@ items:
         spec:
           containers:
             - resources: {}
-              name: pgadmin
-              env:
-                - name: PGADMIN_DEFAULT_EMAIL
-                  value: v6tempest@yahoo.com
-                - name: PGADMIN_DEFAULT_PASSWORD
-                  value: password                
+              name: pgadmin                             
               ports:
                 - containerPort: 80
               image: quay.io/icecavern/pgadmin

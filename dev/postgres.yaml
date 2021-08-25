@@ -6,7 +6,7 @@ items:
     kind: Deployment    
     metadata:
       name: postgresql
-    labels:
+      labels:
         app: postgresql
         app.kubernetes.io/part-of: postgresql      
     spec:
@@ -16,18 +16,19 @@ items:
           app: postgresql
       template:
         metadata:
-          name: postgresql
           labels:
             app: postgresql
           annotations:
         spec:
           containers:
-          - env:
-            image: quay.io/bitnami/postgresql
-            imagePullPolicy: Always
-            name: postgresql
-            ports:
-            - containerPort: 5432
+            - resources: {}
+              name: postgresql
+              env:
+              ports:
+                - containerPort: 5432
+              image: quay.io/bitnami/postgresql
+              imagePullPolicy: Always          
+        
               
 -   kind: Service
     apiVersion: v1

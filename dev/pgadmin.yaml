@@ -30,7 +30,7 @@ items:
                     value: password                
                 ports:
                   - containerPort: 8080
-                image: docker.io/klovercloud/pgadmin4:4.26
+                image: docker.io/fslibre/pgadmin4:5.2
                 imagePullPolicy: Always        
                 
   -   kind: Service

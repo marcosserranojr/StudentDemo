@@ -30,7 +30,7 @@ items:
                   value: password                
               ports:
                 - containerPort: 8080
-              image: docker.io/ubiutil/pgadmin4
+              image: quay.io/icecavern/pgadmin
               imagePullPolicy: Always        
               
 -   kind: Service

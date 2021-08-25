@@ -5,49 +5,47 @@ items:
     apiVersion: apps/v1
     kind: Deployment    
     metadata:
-      name: postgresql
+      name: pgadmin
       labels:
-        app: postgresql
-        app.kubernetes.io/part-of: postgresql      
+        app: pgadmin
+        app.kubernetes.io/part-of: pgadmin      
     spec:
       replicas: 1
       selector:
         matchLabels:
-          app: postgresql
+          app: pgadmin
       template:
         metadata:
           labels:
-            app: postgresql
+            app: pgadmin
           annotations:
         spec:
           containers:
             - resources: {}
-              name: postgresql
+              name: pgadmin
               env:
-                - name: POSTGRES_USER
-                  value: postgres
-                - name: POSTGRES_PASSWORD
-                  value: password
-                - name: POSTGRES_DB
-                  value: student
+                - name: PGADMIN_DEFAULT_EMAIL
+                  value: v6tempest@yahoo.com
+                - name: PGADMIN_DEFAULT_PASSWORD
+                  value: password                
               ports:
-                - containerPort: 5432
-              image: quay.io/bitnami/postgresql
+                - containerPort: 80
+              image: hub.docker.com/r/dpage/pgadmin4
               imagePullPolicy: Always          
         
               
 -   kind: Service
     apiVersion: v1
     metadata:
-      name: postgresql
+      name: pgadmin
       labels:
-        app: postgresql    
+        app: pgadmin    
     spec:
       ports:
-      - port: 5432
-        targetPort: 5432
+      - port: 80
+        targetPort: 80
       selector:
-        app: postgresql
+        app: pgadmin
 
 
     

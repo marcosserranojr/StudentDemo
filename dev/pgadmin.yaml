@@ -1,57 +1,53 @@
 ﻿apiVersion: v1
 kind: List
 items:
--   
+-
     apiVersion: apps/v1
     kind: Deployment    
     metadata:
-      name: pgadmin  
+      name: postgresql
       labels:
-        app: pgadmin
-        app.kubernetes.io/component: pgadmin    
+        app: postgresql
+        app.kubernetes.io/part-of: postgresql      
     spec:
       replicas: 1
       selector:
         matchLabels:
-          app: pgadmin
+          app: postgresql
       template:
         metadata:
           labels:
-            app: pgadmin
-          annotations:        
+            app: postgresql
+          annotations:
         spec:
           containers:
             - resources: {}
-              name: pgadmin
+              name: postgresql
               env:
-                - name: PGADMIN_DEFAULT_EMAIL
-                  value: v6tempest@yahoo.com
-                - name: PGADMIN_DEFAULT_PASSWORD
+                - name: POSTGRES_USER
+                  value: postgres
+                - name: POSTGRES_PASSWORD
                   value: password
+                - name: POSTGRES_DB
+                  value: student
               ports:
-                - containerPort: 80
-                  protocol: TCP
-                - containerPort: 443
-                  protocol: TCP
-              imagePullPolicy: IfNotPresent
-              volumeMounts:
-                - name: pgadmin-volume-1
-                  mountPath: /var/lib/pgadmin
-              terminationMessagePolicy: File
-              image: hub.docker.com/r/dpage/pgadmin4
+                - containerPort: 5432
+              image: quay.io/bitnami/postgresql
+              imagePullPolicy: Always          
+        
               
 -   kind: Service
     apiVersion: v1
     metadata:
-        name: pgadmin
-        labels:
-          app: pgadmin   
+      name: postgresql
+      labels:
+        app: postgresql    
     spec:
-        ports:
-        - port: 80
-          targetPort: 80
-        selector:
-          app: pgadmin    
+      ports:
+      - port: 5432
+        targetPort: 5432
+      selector:
+        app: postgresql
 
 
     

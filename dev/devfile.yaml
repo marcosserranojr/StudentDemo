@@ -12,3 +12,16 @@ components:
   - type: kubernetes
     reference: postgres.yaml
     alias: postgres
+commands:
+  - name: CleanInstall
+    actions:
+      - workdir: '${CHE_PROJECTS_ROOT}/StudentDemo'
+        type: exec
+        command: mvn clean install
+        component: maven
+  - name: Run
+    actions:
+      - workdir: '${CHE_PROJECTS_ROOT}/StudentDemo/target'
+        type: exec
+        command: java -jar *.jar
+        component: maven

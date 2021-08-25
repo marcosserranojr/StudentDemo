@@ -30,7 +30,7 @@ items:
                   value: password                
               ports:
                 - containerPort: 80
-              image: hub.docker.com/r/dpage/pgadmin4
+              image: docker.io/dpage/pgadmin4:latest
               imagePullPolicy: Always          
         
               

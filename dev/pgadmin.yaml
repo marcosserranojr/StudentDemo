@@ -31,12 +31,24 @@ items:
               ports:
                 - containerPort: 80
               volumeMounts:
-                - name: pgadmin-volume-1
+                - name: pgadmin-storage
                   mountPath: /var/lib/pgadmin
               terminationMessagePolicy: File
               image: quay.io/v6tempest1/dbadmin-tool:latest
-              imagePullPolicy: Always        
-              
+              imagePullPolicy: Always
+
+-
+  apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    name: pgadmin-storage
+  spec:
+    accessModes:
+     - ReadWriteOnce
+    resources:
+      requests:
+        storage: 1Gi
+
 -   kind: Service
     apiVersion: v1
     metadata:

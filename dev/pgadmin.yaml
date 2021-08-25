@@ -44,7 +44,12 @@ items:
               ports:
                 - containerPort: 80
               volumeMounts:
-               
+                - name: pgadmin-storage
+                  mountPath: /var/lib/pgadmin
+          volumes:
+            - name: pgadmin-storage
+              PersistentVolumeClaim:
+                claimName: pgadmin-storage
               terminationMessagePolicy: File
               image: quay.io/v6tempest1/dbadmin-tool:latest
               imagePullPolicy: Always

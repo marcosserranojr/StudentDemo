@@ -12,6 +12,9 @@ components:
   - type: kubernetes
     reference: postgres.yaml
     alias: postgres
+  - type: kubernetes
+    reference: pgadmin.yaml
+    alias: pgadmin
   - mountSources: true
     memoryLimit: 512Mi
     type: dockerimage

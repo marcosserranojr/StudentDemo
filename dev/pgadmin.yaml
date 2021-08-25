@@ -1,0 +1,66 @@
+﻿apiVersion: v1
+kind: List
+items:
+-
+    kind: Deployment
+    apiVersion: apps/v1
+    metadata:
+      name: pgadmin  
+      labels:
+        app: pgadmin
+        app.kubernetes.io/component: pgadmin    
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: pgadmin
+      template:
+        metadata:
+          labels:
+            app: pgadmin
+          annotations:        
+        spec:
+          containers:
+            - resources: {}
+              name: pgadmin
+              env:
+                - name: PGADMIN_DEFAULT_EMAIL
+                  value: v6tempest@yahoo.com
+                - name: PGADMIN_DEFAULT_PASSWORD
+                  value: password
+              ports:
+                - containerPort: 80
+                  protocol: TCP
+                - containerPort: 443
+                  protocol: TCP
+              imagePullPolicy: IfNotPresent
+              volumeMounts:
+                - name: pgadmin-volume-1
+                  mountPath: /var/lib/pgadmin
+              terminationMessagePolicy: File
+              image: hub.docker.com/r/dpage/pgadmin4
+            
+-   kind: Service
+    apiVersion: v1
+    metadata:
+      name: pgadmin
+      labels:
+        app: pgadmin   
+    spec:
+      ports:
+      - port: 80
+        targetPort: 80
+      selector:
+        app: pgadmin    
+
+-   kind: Route
+    apiVersion: route.openshift.io/v1
+    metadata:
+        labels:
+          app: pgadmin
+        name: pgadmin-route
+    spec:
+        to:
+          kind: Service
+          name: pgadmin
+ 

@@ -30,7 +30,7 @@ items:
                     value: password                
                 ports:
                   - containerPort: 8080
-                image: quay.io/ukhomeofficedigital/pgadmin4
+                image: docker.io/klovercloud/pgadmin4:4.26
                 imagePullPolicy: Always        
                 
   -   kind: Service

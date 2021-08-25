@@ -23,10 +23,14 @@ items:
           containers:
             - resources: {}
               name: pgadmin
-              env:                             
+              env:
+                - name: PGADMIN_DEFAULT_EMAIL
+                  value: v6tempest@yahoo.com
+                - name: PGADMIN_DEFAULT_PASSWORD
+                  value: password                
               ports:
                 - containerPort: 8080
-              image: quay.io/icecavern/pgadmin
+              image: docker.io/051975/pgadmin:v4
               imagePullPolicy: Always        
               
 -   kind: Service

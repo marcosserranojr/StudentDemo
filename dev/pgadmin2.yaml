@@ -51,8 +51,10 @@ items:
       app: pgadmin-app   
   spec:
     ports:
+    - name: 80-tcp
     - port: 80
       targetPort: 80
+    - name: 443-tcp
     - port: 443
       targetPort: 443
     selector:

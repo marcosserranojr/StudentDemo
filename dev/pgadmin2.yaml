@@ -40,16 +40,27 @@ items:
               image: quay.io/bitnami/postgresql
               imagePullPolicy: Always          
         
--   kind: Service
-    apiVersion: v1
-    metadata:
-      name: pgadmin-app
-      labels:
-        app: pgadmin-app   
-    spec:
-      ports:
-      - port: 8080
-        targetPort: 8080
-      selector:
-        app: pgadmin-app
+- kind: Service
+  apiVersion: v1
+  metadata:
+    name: pgadmin-app
+    labels:
+      app: pgadmin-app   
+  spec:
+    ports:
+    - port: 8080
+      targetPort: 8080
+    selector:
+      app: pgadmin-app
+
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    name: pgadmin-storage
+  spec:
+    accessModes:
+     - ReadWriteOnce
+    resources:
+      requests:
+        storage: 1Gi
                  

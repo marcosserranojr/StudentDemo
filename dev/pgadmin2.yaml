@@ -33,7 +33,10 @@ items:
                 - name: PGADMIN_DEFAULT_PASSWORD
                   value: password 
               ports:
-                - containerPort: 8080
+                - containerPort: 80
+                  protocol: TCP
+                - containerPort: 443
+                  protocol: TCP
               volumeMounts:
                 - name: pga-storage
                   mountPath: /var/lib/pgadmin   
@@ -48,8 +51,10 @@ items:
       app: pgadmin-app   
   spec:
     ports:
-    - port: 8080
-      targetPort: 8080
+    - port: 80
+      targetPort: 80
+    - port: 443
+      targetPort: 443
     selector:
       app: pgadmin-app
 
@@ -74,3 +79,6 @@ items:
     to:
       kind: Service
       name: pgadmin-app
+    ports:
+    - port: 80
+      targetPort: 80

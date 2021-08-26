@@ -28,9 +28,9 @@ items:
             - resources: {}
               name: pgadmin-app
               env:
-                - name: PGADMIN_DEFAULT_EMAIL
+                - name: PGADMIN_SETUP_EMAIL
                   value: v6tempest@yahoo.com
-                - name: PGADMIN_DEFAULT_PASSWORD
+                - name: PGADMIN_SETUP_PASSWORD
                   value: password 
               ports:
                 - containerPort: 80
@@ -40,7 +40,7 @@ items:
               volumeMounts:
                 - name: pga-storage
                   mountPath: /var/lib/pgadmin   
-              image: quay.io/v6tempest1/dbadmin-tool:latest
+              image: quay.io/v6tempest1/dbadmin-tool:crunchy-pgadmin4
               imagePullPolicy: Always          
         
 - kind: Service
@@ -76,9 +76,9 @@ items:
 - kind: Route
   apiVersion: route.openshift.io/v1
   metadata:
+    name: pgadmin-console
     labels:
-      app: pgadmin-app
-    name: pgadmin-route
+      app: pgadmin-app    
   spec:
     to:
       kind: Service

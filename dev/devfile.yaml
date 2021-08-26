@@ -14,9 +14,8 @@ components:
     type: dockerimage
     alias: maven
     image: 'registry.redhat.io/codeready-workspaces/plugin-java11-rhel8@sha256:f90e09397caa4dd5cd3476e495adfc0096272c0ba746a6e32215175c541ae058'  
- 
   - type: openshift
-    reference: pgadmin.yaml
+    reference: pgadmin2.yaml
     alias: pgadmin
  
 commands:

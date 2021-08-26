@@ -37,7 +37,7 @@ items:
               volumeMounts:
                 - name: pga-storage
                   mountPath: /var/lib/pgadmin   
-              image: quay.io/bitnami/postgresql
+              image: quay.io/v6tempest1/dbadmin-tool:latest
               imagePullPolicy: Always          
         
 - kind: Service

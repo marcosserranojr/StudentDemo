@@ -1,7 +1,9 @@
+kind: Template
 apiVersion: v1
-kind: List
-items:
--
+metadata:
+  name: pgadmin-app
+objects:
+- 
     apiVersion: apps/v1
     kind: Deployment    
     metadata:

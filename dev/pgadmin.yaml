@@ -65,18 +65,4 @@ items:
      - ReadWriteOnce
     resources:
       requests:
-        storage: 1Gi
-                 
-- kind: Route
-  apiVersion: route.openshift.io/v1
-  metadata:
-    name: pgadmin-console
-    labels:
-      app: pgadmin-app    
-  spec:
-    to:
-      kind: Service
-      name: pgadmin-app
-    ports:
-    - port: 5050
-      targetPort: 5050
+        storage: 1Gi                

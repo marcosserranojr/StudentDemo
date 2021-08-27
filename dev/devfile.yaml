@@ -24,7 +24,7 @@ components:
       attributes:
         discoverable: "false"
         public: "true"
-        protocol: tcp
+        protocol: http
     alias: pgadmin
  
 commands:

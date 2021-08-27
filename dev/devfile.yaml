@@ -18,6 +18,13 @@ components:
     reference: postgres.yaml    
   - type: openshift
     reference: pgadmin.yaml
+    endpoints:
+    - name: 'pgadmin-console'
+      port: 5050
+      attributes:
+        discoverable: "false"
+        public: "true"
+        protocol: tcp
     alias: pgadmin
  
 commands:

@@ -15,11 +15,15 @@ public class StudentConfig {
     @Bean
     CommandLineRunner commandLineRunner(StudentRepository repository){
         return args -> {
-            Student marcos = new Student( "Marcos", "Serrano","marcos@gmail.com", LocalDate.of(1975, Month.MAY, 19) );
+            Student Ranj = new Student( "Ranjith", "Tadisina","Ranjitha@va.gov", LocalDate.of(1975, Month.MAY, 19) );
 
-            Student kaori = new Student( "Kaori","Oshiro", "kaori@gmail.com", LocalDate.of(1974, Month.JUNE, 25) );
+            Student Pra = new Student( "Pranay","Munjampally", "Pranay@va.gov", LocalDate.of(1974, Month.JUNE, 25) );
 
-            repository.saveAll(List.of(marcos, kaori));
+            Student Vin = new Student( "Vinay", "Bingi","Vinay@va.gov", LocalDate.of(1975, Month.JULY, 10) );
+
+            Student Mar = new Student( "Marcos","Serrano", "Marcos@va.gov", LocalDate.of(1974, Month.AUGUST, 12) );
+
+            repository.saveAll(List.of(Ranj, Pra, Vin, Mar));
         };
     }
 

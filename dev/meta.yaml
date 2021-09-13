@@ -1,0 +1,31 @@
+apiVersion: v2
+publisher: quay.io/v6tempest1/idea-iu
+name: ideaIU-NOVNC
+version: 2020.2.3
+type: Che Editor
+displayName:  IntelliJ IDEA Ultimate Edition
+title:  IntelliJ IDEA Ultimate Edition (in browser using noVNC) as editor for Eclipse Che
+description:  IntelliJ IDEA Ultimate Edition running on the Web with noVNC
+icon: https://resources.jetbrains.com/storage/products/intellij-idea/img/meta/intellij-idea_logo_300x300.png
+category: Editor
+repository: https://github.com/che-incubator/che-editor-intellij-community
+firstPublicationDate: "2020-10-27"
+spec:
+  endpoints:
+    -  name: "intellij"
+       public: true
+       targetPort: 8080
+       attributes:
+         protocol: http
+         type: ide
+         path: /vnc.html?resize=remote&autoconnect=true&reconnect=true
+  containers:
+    - name: ideaiu-novnc
+      image: "quay.io/v6tempest1/idea-iu:latest"
+      mountSources: true
+      volumes:
+        - mountPath: "/JetBrains/ideaIU"
+          name: ideaiu-configuration
+      ports:
+        - exposedPort: 8080
+      memoryLimit: "2048M"

@@ -35,17 +35,12 @@ commands:
         command: mvn clean install
         component: maven
   - name: Run
+    previewUrl:
+        port: 8080     
+        path: /student 
     actions:
       - workdir: '${CHE_PROJECTS_ROOT}/StudentDemo/target'
         type: exec
         command: java -jar *.jar
-        component: maven
-  - name: viewapp
-    previewUrl:
-        port: 8080     
-        path: /student   
-    actions:
-      - type: exec
-        component: maven
-        command: "java -jar *.jar"
-        workdir: '${CHE_PROJECTS_ROOT}/StudentDemo/target'          
+        component: maven        
+           

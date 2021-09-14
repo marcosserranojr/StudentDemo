@@ -21,7 +21,7 @@ spec:
          path: /vnc.html?resize=remote&autoconnect=true&reconnect=true
   containers:
     - name: ideaiu-novnc
-      image: "quay.io/v6tempest1/idea-iu:latest"
+      image: "quay.io/che-incubator/che-idea:latest"
       mountSources: true
       volumes:
         - mountPath: "/JetBrains/ideaIU"

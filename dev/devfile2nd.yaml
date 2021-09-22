@@ -18,14 +18,17 @@ components:
     alias: postgres
     mountSources: true
     memoryLimit: 512Mi
+    endpoints:
+      - name: postgres-student-db
+        port: 5432
     image: quay.io/bitnami/postgresql
-      env:
-        - value: postgres
-          name: POSTGRES_USER
-        - value: password
-          name: POSTGRES_PASSWORD
-        - value: student
-          name: POSTGRES_DB
+    env:
+      - value: postgres
+        name: POSTGRES_USER
+      - value: password
+        name: POSTGRES_PASSWORD
+      - value: student
+        name: POSTGRES_DB
 
 
 commands:

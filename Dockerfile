@@ -1,7 +1,7 @@
 FROM registry.access.redhat.com/ubi8/openjdk-17:1.15-1.1679485273
-//COPY target/demo-0.0.1-SNAPSHOT.jar /user/app/
+#COPY target/demo-0.0.1-SNAPSHOT.jar /user/app/
 
-//WORKDIR /user/app
+#WORKDIR /user/app
 
 COPY /src/target/demo-0.0.1-SNAPSHOT.jar /user/app/
 
